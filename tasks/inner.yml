@@ -29,9 +29,10 @@
     src: '{{ item.src | default(omit) }}'
     unsafe_writes: '{{ item.unsafe_writes | default(omit) }}'
     validate: '{{ item.validate | default(omit) }}'
+  register: simplefile_write_file
 
 - name: Execute post-command
   command: '{{ item.post_command }}'
-  when: item.post_command is defined
+  when: item.post_command is defined and simplefile_write_file.changed
 
 ...
