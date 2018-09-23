@@ -3,9 +3,13 @@
 - name: Create required directories
   file:
     dest: '{{ item.dest | dirname }}'
+    recurse: true
+
+- name: Set permissions for directory
+  file:
+    dest: '{{ item.dest | dirname }}'
     owner: '{{ item.owner | default(omit) }}'
     group: '{{ item.group | default(omit) }}'
-    recurse: true
 
 - name: Write file
   copy:
