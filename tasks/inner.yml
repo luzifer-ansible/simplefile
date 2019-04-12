@@ -34,6 +34,13 @@
     unsafe_writes: '{{ item.unsafe_writes | default(omit) }}'
     validate: '{{ item.validate | default(omit) }}'
   register: simplefile_write_file
+  when: item.state is not defined or item.state != 'absent'
+
+- name: Remove file
+  file:
+    dest: '{{ item.dest }}'
+    state: 'absent'
+  when: item.state is defined and item.state == 'absent'
 
 - name: Execute post-command
   command: '{{ item.post_command }}'
