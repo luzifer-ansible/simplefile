@@ -1,3 +1,7 @@
+# 0.3.0 / 2019-04-12
+
+  * Support file removal
+
 # 0.2.1 / 2018-09-23
 
   * Fix: Do not modify permissions recusively
